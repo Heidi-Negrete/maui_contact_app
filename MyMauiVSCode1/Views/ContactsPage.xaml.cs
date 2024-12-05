@@ -1,3 +1,6 @@
+using MyMauiVSCode1.Models;
+using Contact = MyMauiVSCode1.Models.Contact;
+
 namespace MyMauiVSCode1.Views;
 
 public partial class ContactsPage : ContentPage
@@ -5,15 +8,24 @@ public partial class ContactsPage : ContentPage
     public ContactsPage()
     {
         InitializeComponent();
+
+        List<Contact> contacts = ContactRepository.GetContacts();
+
+        listContacts.ItemsSource = contacts;
     }
 
-    private void btnAddContact_Clicked(object sender, EventArgs e)
+    private async void listContacts_ItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        Shell.Current.GoToAsync(nameof(AddContactPage));
+        if (e.SelectedItem == null)
+            return;
+
+        Console.WriteLine("Selected: " + e.SelectedItem);
+        await Shell.Current.GoToAsync($"{nameof(EditContactPage)}?Id={((Contact)e.SelectedItem).ContactId}");
     }
 
-    private void btnEditContact_Clicked(object sender, EventArgs e)
+    private void listContacts_ItemTapped(object sender, ItemTappedEventArgs e)
     {
-        Shell.Current.GoToAsync(nameof(EditContactPage));
+        listContacts.SelectedItem = null;
     }
+
 }
