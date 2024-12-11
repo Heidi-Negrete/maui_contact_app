@@ -24,43 +24,48 @@
             </HorizontalStackLayout>
         </Frame>
 
+        <Frame Padding="10, 5, 10, 5">
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Phone"
+                       VerticalOptions="Center"></Label>
+                <Entry x:Name="entryPhone"
+                       VerticalOptions="Center"></Entry>
+            </HorizontalStackLayout>
+        </Frame>
 
-        <HorizontalStackLayout Spacing="10">
-            <Label Text="Phone"
-                   VerticalOptions="Center"></Label>
-            <Entry x:Name="entryPhone"
-                   VerticalOptions="Center"></Entry>
-        </HorizontalStackLayout>
+        <Frame Padding="10, 5, 10, 5">
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Email"
+                       VerticalOptions="Center"></Label>
+                <Entry x:Name="entryEmail"
+                       VerticalOptions="Center">
+                    <Entry.Behaviors>
+                        <toolkit:MultiValidationBehavior
+                            x:Name="emailValidator"
+                            Flags="ValidateOnAttaching, ValidateOnValueChanged">
 
-        <HorizontalStackLayout Spacing="10">
-            <Label Text="Email"
-                   VerticalOptions="Center"></Label>
-            <Entry x:Name="entryEmail"
-                   VerticalOptions="Center">
-                <Entry.Behaviors>
-                    <toolkit:MultiValidationBehavior
-                        x:Name="emailValidator"
-                        Flags="ValidateOnAttaching, ValidateOnValueChanged">
+                            <toolkit:TextValidationBehavior
+                                Flags="ValidateOnAttaching, ValidateOnValueChanged"
+                                MinimumLength="1"
+                                toolkit:MultiValidationBehavior.Error="Email is required."/>
 
-                        <toolkit:TextValidationBehavior
-                            Flags="ValidateOnAttaching, ValidateOnValueChanged"
-                            MinimumLength="1"
-                            toolkit:MultiValidationBehavior.Error="Email is required."/>
+                            <toolkit:EmailValidationBehavior
+                                Flags="ValidateOnAttaching, ValidateOnValueChanged"
+                                toolkit:MultiValidationBehavior.Error="Email format is invalid."/>
+                        </toolkit:MultiValidationBehavior>
+                    </Entry.Behaviors>
+                </Entry>
+            </HorizontalStackLayout>
+        </Frame>
 
-                        <toolkit:EmailValidationBehavior
-                            Flags="ValidateOnAttaching, ValidateOnValueChanged"
-                            toolkit:MultiValidationBehavior.Error="Email format is invalid."/>
-                    </toolkit:MultiValidationBehavior>
-                </Entry.Behaviors>
-            </Entry>
-        </HorizontalStackLayout>
-
-        <HorizontalStackLayout Spacing="10">
-            <Label Text="Address"
-                   VerticalOptions="Center"></Label>
-            <Entry x:Name="entryAddress"
-                   VerticalOptions="Center"></Entry>
-        </HorizontalStackLayout>
+        <Frame Padding="10, 5, 10, 5">
+            <HorizontalStackLayout Spacing="10">
+                <Label Text="Address"
+                       VerticalOptions="Center"></Label>
+                <Entry x:Name="entryAddress"
+                       VerticalOptions="Center"></Entry>
+            </HorizontalStackLayout>
+        </Frame>
 
         <Button Text="Save"
                 Clicked="btnSave_Clicked"

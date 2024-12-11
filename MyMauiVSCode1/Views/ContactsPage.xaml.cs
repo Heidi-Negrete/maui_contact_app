@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using MyMauiVSCode1.Models;
 using Contact = MyMauiVSCode1.Models.Contact;
 
@@ -8,8 +9,13 @@ public partial class ContactsPage : ContentPage
     public ContactsPage()
     {
         InitializeComponent();
+    }
 
-        List<Contact> contacts = ContactRepository.GetContacts();
+    protected override void OnAppearing()
+    {
+        base.OnAppearing();
+
+        var contacts = new ObservableCollection<Contact>(ContactRepository.GetContacts());
 
         listContacts.ItemsSource = contacts;
     }
