@@ -6,7 +6,7 @@
     xmlns:local="clr-namespace:MyMauiVSCode1"
     xmlns:views="clr-namespace:MyMauiVSCode1.Views"
     Shell.FlyoutBehavior="Disabled"
-    Title="MyMauiVSCode1">
+    Title="My Contacts">
 
     <ShellContent
         Title="Home"

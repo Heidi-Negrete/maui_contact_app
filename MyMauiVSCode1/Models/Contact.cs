@@ -10,6 +10,8 @@ public class Contact
 
     public string Email { get; set; }
 
+    public string Address { get; set; }
+
     // override ToString DON'T DO THIS. Use data binding instead. see the xaml file
     public override string ToString()
     {
