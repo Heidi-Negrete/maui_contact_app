@@ -5,9 +5,14 @@
              Title="Contacts">
 
     <Grid Padding="10"
-          RowDefinitions="*, 50"
+          RowDefinitions="50, *, 50"
           ColumnDefinitions="*">
-        <ListView Grid.Row="0"
+        <SearchBar Grid.Row="0"
+                   Grid.Column="0"
+                   x:Name="searchBar"
+                   Placeholder="Search Contacts"
+                   TextChanged="searchBar_TextChanged"></SearchBar>
+        <ListView Grid.Row="1"
                   Grid.Column="0"
                   x:Name="listContacts"
                   BackgroundColor="Transparent"

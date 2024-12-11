@@ -63,4 +63,9 @@ public static class ContactRepository
             _contacts.Remove(contactToDelete);
         }
     }
+
+    public static List<Contact> SearchContact(string searchText)
+    {
+        return _contacts.Where(c => c.Name.Contains(searchText, StringComparison.OrdinalIgnoreCase) || c.Address.Contains(searchText, StringComparison.OrdinalIgnoreCase) || c.Phone.Contains(searchText, StringComparison.OrdinalIgnoreCase) || c.Email.Contains(searchText, StringComparison.OrdinalIgnoreCase)).ToList();
+    }
 }

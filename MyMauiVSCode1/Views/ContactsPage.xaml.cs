@@ -52,6 +52,13 @@ public partial class ContactsPage : ContentPage
 
     private void loadContacts()
     {
-        listContacts.ItemsSource = new ObservableCollection<Contact>(ContactRepository.GetContacts());
+        var contacts = new ObservableCollection<Contact>(ContactRepository.GetContacts());
+        listContacts.ItemsSource = contacts;
+    }
+
+    private void searchBar_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        var contacts = new ObservableCollection<Contact>(ContactRepository.SearchContact(e.NewTextValue));
+        listContacts.ItemsSource = contacts;
     }
 }
