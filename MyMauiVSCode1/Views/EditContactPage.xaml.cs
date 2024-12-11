@@ -20,36 +20,20 @@ public partial class EditContactPage : ContentPage
 
             if (contact != null)
             {
-                entryName.Text = contact.Name;
-                entryPhone.Text = contact.Phone;
-                entryEmail.Text = contact.Email;
-                entryAddress.Text = contact.Address;
+                contactControl.Name = contact.Name;
+                contactControl.Phone = contact.Phone;
+                contactControl.Email = contact.Email;
+                contactControl.Address = contact.Address;
             }
         }
     }
 
     private void btnSave_Clicked(object sender, EventArgs e)
     {
-        if (nameValidator.IsNotValid)
-        {
-            DisplayAlert("Error", "Name is required", "OK");
-            return;
-        }
-
-        if (emailValidator.IsNotValid)
-        {
-            // refactor with builder pattern for only one display alert
-            foreach (var error in emailValidator.Errors)
-            {
-                DisplayAlert("Error", error.ToString(), "OK");
-            }
-            return;
-        }
-
-        contact.Name = entryName.Text;
-        contact.Phone = entryPhone.Text;
-        contact.Email = entryEmail.Text;
-        contact.Address = entryAddress.Text;
+        contact.Name = contactControl.Name;
+        contact.Phone = contactControl.Phone;
+        contact.Email = contactControl.Email;
+        contact.Address = contactControl.Address;
 
         ContactRepository.UpdateContact(contact.ContactId, contact);
 
@@ -59,5 +43,10 @@ public partial class EditContactPage : ContentPage
     private void btnCancel_Clicked(object sender, EventArgs e)
     {
         Shell.Current.GoToAsync("..");
+    }
+
+    private void contactCtrl_OnError(object sender, string e)
+    {
+        DisplayAlert("Error", e, "OK");
     }
 }
