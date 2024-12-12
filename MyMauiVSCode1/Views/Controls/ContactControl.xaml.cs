@@ -1,3 +1,5 @@
+using System.Text;
+
 namespace MyMauiVSCode1.Views.Controls;
 
 public partial class ContactControl : ContentView
@@ -69,11 +71,13 @@ public partial class ContactControl : ContentView
 
         if (emailValidator.IsNotValid)
         {
-            // refactor with builder pattern for only one display alert
+            StringBuilder errorString = new StringBuilder();
+
             foreach (var error in emailValidator.Errors)
             {
-                OnError?.Invoke(sender, error.ToString());
+                errorString.AppendLine(error.ToString());
             }
+            OnError?.Invoke(sender, errorString.ToString());
             return;
         }
 
